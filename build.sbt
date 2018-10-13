@@ -67,6 +67,8 @@ publishTo := Some(
 
 libraryDependencies ++=
   Seq(
+    "com.microsoft.azure" % "azure-storage-blob" % "10.1.0",
+
     "ch.qos.logback" % "logback-classic" % "1.1.7",
     "com.typesafe" % "config" % "1.3.3",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0",
