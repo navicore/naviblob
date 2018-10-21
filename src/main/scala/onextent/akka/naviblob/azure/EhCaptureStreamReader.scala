@@ -1,30 +1,22 @@
 package onextent.akka.naviblob.azure
 
-import java.nio.ByteBuffer
-
-import com.microsoft.azure.storage.blob.BlobURL
-import com.microsoft.rest.v2.util.FlowableUtil
+import com.microsoft.azure.storage.blob.CloudBlockBlob
 import com.sksamuel.avro4s.{AvroInputStream, AvroSchema}
-import io.reactivex.Single
 
-class EhCaptureStreamReader(path: String)(implicit cfg: AzureBlobConfig) extends AzureBlobber {
+class EhCaptureStreamReader(path: String)(implicit cfg: AzureBlobConfig)
+    extends AzureV8Blobber {
 
+  val blob: CloudBlockBlob = container.getBlockBlobReference(path)
 
-  // todo: how to read as an async input stream instead of blocking get?????
-  // todo: look at Flowable in reactivex impls
+  def read(): Iterator[EhRecord] = {
 
-  val burl: BlobURL = containerURL.createBlobURL(path)
-  val o: Single[ByteBuffer] = burl
-    .download(null, null, false, null)
-    .flatMap(r => FlowableUtil.collectBytesInBuffer(r.body(null)))
+    val bis = blob.openInputStream()
 
-  def read(): Set[String] = {
-    val bytes: ByteBuffer = o.blockingGet()
     val is: AvroInputStream[EhRecord] =
-      AvroInputStream.data[EhRecord].from(bytes).build(AvroSchema[EhRecord])
-    val records: Set[EhRecord] = is.iterator.toSet
-    is.close()
-    records.map(_.Body)
+      AvroInputStream.data[EhRecord].from(bis).build(AvroSchema[EhRecord])
+
+    is.iterator
+
   }
 
 }

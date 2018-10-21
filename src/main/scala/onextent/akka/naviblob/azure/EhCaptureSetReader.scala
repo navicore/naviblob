@@ -1,11 +1,11 @@
 package onextent.akka.naviblob.azure
 
 import java.nio.ByteBuffer
-
 import com.microsoft.azure.storage.blob.BlobURL
 import com.microsoft.rest.v2.util.FlowableUtil
-import com.sksamuel.avro4s.{AvroInputStream, AvroSchema}
 import io.reactivex.Single
+
+import com.sksamuel.avro4s.{AvroInputStream, AvroSchema}
 
 class EhCaptureSetReader(path: String)(implicit cfg: AzureBlobConfig) extends AzureBlobber {
 

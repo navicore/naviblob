@@ -68,6 +68,7 @@ publishTo := Some(
 libraryDependencies ++=
   Seq(
     "com.microsoft.azure" % "azure-storage-blob" % "10.1.0",
+    "com.microsoft.azure" % "azure-storage" % "8.0.0",
 
     "com.sksamuel.avro4s" %% "avro4s-core" % "2.0.2",
 
