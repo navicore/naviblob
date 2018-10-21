@@ -67,6 +67,8 @@ publishTo := Some(
 
 libraryDependencies ++=
   Seq(
+
+    // this is a mess, I can list all the blobs with 10.1 and I can integrate with other libs via InputStream with 8.0
     "com.microsoft.azure" % "azure-storage-blob" % "10.1.0",
     "com.microsoft.azure" % "azure-storage" % "8.0.0",
 

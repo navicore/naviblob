@@ -8,6 +8,16 @@ class AzureV8BlobPaths(implicit cfg: AzureBlobConfig)
 
   var paths = List()
 
+  // BROKEN
+  // BROKEN
+  // BROKEN
+  // BROKEN the insane move to put a completely incompatible API over the same package namespace makes this hard to debug, 8.0 vs 10.1
+  // BROKEN
+  // BROKEN
+  // BROKEN
+  // BROKEN
+  // BROKEN
+  @deprecated
   override def iterator: Iterator[String] = {
 
     val l = cfg.path match {

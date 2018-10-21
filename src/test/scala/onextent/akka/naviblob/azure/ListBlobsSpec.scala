@@ -12,21 +12,21 @@ class ListBlobsSpec extends FlatSpec with Matchers {
   implicit val cfg: AzureBlobConfig = AzureBlobConfig(storageAccount, storageKey, containerName, storagePath)
   implicit val azureBlobber: AzureBlobber = new AzureBlobber
 
-  ignore should "list blobs" in {
+  "list api" should "list blobs" in {
 
     val c = new AzureBlobPaths
     c.foreach(u => println(s"ejs $u"))
 
   }
 
-  ignore should "read blob" in {
+  "api" should "read blob" in {
 
     val c = new AzureBlobPaths
     c.toList.headOption match {
       case Some(p) =>
         val r = new EhCaptureSetReader(p)
         val records = r.read()
-        records.size should be(12688)
+        records.size should be(9997)
         records.slice(0, 10).foreach(println)
       case _ =>
     }
