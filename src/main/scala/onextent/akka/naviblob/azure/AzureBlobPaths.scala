@@ -1,40 +1,18 @@
-package onextent.akka.naviblob
-
-import java.net.URL
-import java.util.Locale
+package onextent.akka.naviblob.azure
 
 import com.microsoft.azure.storage.blob._
-import com.microsoft.rest.v2.http.HttpPipeline
-import com.typesafe.scalalogging.LazyLogging
 
 import scala.annotation.tailrec
 
-class BlobPaths(accountName: String,
-                accountKey: String,
-                containerName: String,
-                path: Option[String])
-    extends Iterable[String]
-    with LazyLogging {
+class AzureBlobPaths(implicit cfg: AzureBlobConfig)
+    extends AzureBlobber
+    with Iterable[String] {
 
-  val credential = new SharedKeyCredentials(accountName, accountKey)
-
-  val pipeline: HttpPipeline =
-    StorageURL.createPipeline(credential, new PipelineOptions)
-
-  val u = new URL(
-    String.format(Locale.ROOT,
-                  s"https://$accountName.blob.core.windows.net",
-                  accountName))
-
-  val serviceURL = new ServiceURL(u, pipeline)
-
-  val containerURL: ContainerURL = serviceURL.createContainerURL(containerName)
-
-  val options: ListBlobsOptions = new ListBlobsOptions()
+  //confirmed that java is mutating the options
   options.withMaxResults(100)
-  path match {
+  cfg.path match {
     case Some(p) => options.withPrefix(p)
-    case _ =>
+    case _       =>
   }
 
   var paths: List[String] = List()

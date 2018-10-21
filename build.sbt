@@ -69,10 +69,14 @@ libraryDependencies ++=
   Seq(
     "com.microsoft.azure" % "azure-storage-blob" % "10.1.0",
 
+    "com.sksamuel.avro4s" %% "avro4s-core" % "2.0.2",
+
     "ch.qos.logback" % "logback-classic" % "1.1.7",
     "com.typesafe" % "config" % "1.3.3",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0",
 
+    "org.apache.avro" % "avro" % "1.8.2",
+    
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
     "com.typesafe.akka" %% "akka-persistence" % akkaVersion,

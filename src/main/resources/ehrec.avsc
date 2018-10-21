@@ -1,0 +1,30 @@
+{
+	"type": "record",
+	"name": "ehrec",
+	"namespace": "onextent.azure.naviblob.data",
+	"fields": [{
+		"name": "SequenceNumber",
+		"type": "long"
+	}, {
+		"name": "Offset",
+		"type": "string"
+	}, {
+		"name": "EnqueuedTimeUtc",
+		"type": "string"
+	}, {
+		"name": "SystemProperties",
+		"type": {
+			"type": "map",
+			"values": "string"
+		}
+	}, {
+		"name": "Properties",
+		"type": {
+			"type": "map",
+			"values": "string"
+		}
+	}, {
+		"name": "Body",
+		"type": "string"
+	}]
+}
