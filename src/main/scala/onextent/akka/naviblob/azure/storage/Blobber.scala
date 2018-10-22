@@ -1,4 +1,4 @@
-package onextent.akka.naviblob.azure
+package onextent.akka.naviblob.azure.storage
 
 import java.net.URL
 import java.util.Locale
@@ -7,7 +7,7 @@ import com.microsoft.azure.storage.blob._
 import com.microsoft.rest.v2.http.HttpPipeline
 import com.typesafe.scalalogging.LazyLogging
 
-class AzureBlobber(implicit cfg: AzureBlobConfig) extends LazyLogging {
+class Blobber(implicit cfg: BlobConfig) extends LazyLogging {
 
   val credential = new SharedKeyCredentials(cfg.accountName, cfg.accountKey)
 

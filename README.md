@@ -21,20 +21,22 @@ update your `build.sbt` dependencies with:
 libraryDependencies += "tech.navicore" %% "naviblob" % "TBD"
 ```
 
-create a config, a connector, and a graph stage via:
+create a config, a connector, and a source via:
 
 ```scala
     val consumer = ... // some Sink
     ...
     ...
     ...
-    implicit val cfg: AzureBlobConfig = AzureBlobConfig(storageAccount, storageKey, containerName, storagePath)
-    val connector: ActorRef = actorSystem.actorOf(EhCaptureConnector.props(cfg))
-    val srcGraph = new NaviBlob(connector)
-
-    // then create a back-pressured stream that will read data from blobs found in storagePath
-
-    val r: Future[Done] = Source.fromGraph(srcGraph).runWith(consumer)
+    // credentials and location
+    implicit val cfg: BlobConfig = BlobConfig(STORAGEACCOUNT, STORAGEKEY, CONTAINERNAME, STORAGEPATH)
+    // type parameter for avro deserialize - in this example: `EhRecord`
+    val connector: ActorRef = actorSystem.actorOf(AvroConnector.props[EhRecord])
+    val src = NaviBlob[EhRecord](connector)
+    ...
+    ...
+    ...
+    src.runWith(consumer)
     ...
     ...
     ...
