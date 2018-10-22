@@ -9,7 +9,6 @@ import akka.stream.{Attributes, Outlet, SourceShape}
 import akka.util.Timeout
 import com.sksamuel.avro4s.{Decoder, SchemaFor}
 import com.typesafe.scalalogging.LazyLogging
-import onextent.akka.naviblob.azure.avvro.AvroConnector.{NoMore, Pull}
 
 import scala.concurrent.{Await, Future}
 import scala.reflect.ClassTag
@@ -25,6 +24,9 @@ object NaviBlob {
     Source.fromGraph(new NaviBlob[T](connector))
 
 }
+
+final case class Pull()
+final case class NoMore()
 
 /**
   * Entry point api. Users instantiate this and wire it into their streams.

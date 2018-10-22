@@ -3,7 +3,7 @@ package onextent.akka.naviblob.azure.avvro
 import akka.actor.{Actor, Props}
 import com.sksamuel.avro4s.{Decoder, SchemaFor}
 import com.typesafe.scalalogging.LazyLogging
-import onextent.akka.naviblob.azure.avvro.AvroConnector.{NoMore, Pull}
+import onextent.akka.naviblob.akka.{NoMore, Pull}
 import onextent.akka.naviblob.azure.storage.{BlobConfig, BlobPaths}
 
 object AvroConnector extends LazyLogging {
@@ -11,9 +11,6 @@ object AvroConnector extends LazyLogging {
   val name: String = "AvroConnector"
 
   def props[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig) = Props(new AvroConnector[T]())
-
-  final case class Pull()
-  final case class NoMore()
 }
 
 class AvroConnector[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig)
