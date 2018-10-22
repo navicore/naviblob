@@ -65,3 +65,4 @@ sbt sonatypeReleaseAll
 
 ---
 [avro4s]:https://github.com/sksamuel/avro4s
+
