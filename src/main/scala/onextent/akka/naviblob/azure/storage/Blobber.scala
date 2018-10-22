@@ -1,4 +1,4 @@
-package onextent.akka.naviblob.azure
+package onextent.akka.naviblob.azure.storage
 
 import java.net.URL
 import java.util.Locale

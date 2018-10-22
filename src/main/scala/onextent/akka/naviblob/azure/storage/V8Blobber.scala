@@ -1,4 +1,4 @@
-package onextent.akka.naviblob.azure
+package onextent.akka.naviblob.azure.storage
 
 import com.microsoft.azure.storage.CloudStorageAccount
 import com.microsoft.azure.storage.blob.{CloudBlobClient, CloudBlobContainer}

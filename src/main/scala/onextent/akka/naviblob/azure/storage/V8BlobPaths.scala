@@ -1,4 +1,4 @@
-package onextent.akka.naviblob.azure
+package onextent.akka.naviblob.azure.storage
 
 import scala.collection.JavaConverters._
 

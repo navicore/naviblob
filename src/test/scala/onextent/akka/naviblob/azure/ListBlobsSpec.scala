@@ -1,5 +1,6 @@
 package onextent.akka.naviblob.azure
 
+import onextent.akka.naviblob.azure.storage.{BlobConfig, BlobPaths, Blobber}
 import org.scalatest._
 
 class ListBlobsSpec extends FlatSpec with Matchers {

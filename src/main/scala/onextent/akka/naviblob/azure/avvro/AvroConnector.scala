@@ -1,9 +1,10 @@
-package onextent.akka.naviblob.azure
+package onextent.akka.naviblob.azure.avvro
 
 import akka.actor.{Actor, Props}
 import com.sksamuel.avro4s.{Decoder, SchemaFor}
 import com.typesafe.scalalogging.LazyLogging
-import onextent.akka.naviblob.azure.AvroConnector.{NoMore, Pull}
+import onextent.akka.naviblob.azure.avvro.AvroConnector.{NoMore, Pull}
+import onextent.akka.naviblob.azure.storage.{BlobConfig, BlobPaths}
 
 object AvroConnector extends LazyLogging {
 
@@ -21,20 +22,19 @@ class AvroConnector[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig
 
   val pathsIterator: Iterator[String] = new BlobPaths().toList.iterator
 
-  var readerIterator: Iterator[EhRecord] =
-    new AvroStreamReader[EhRecord](pathsIterator.next()).read()
+  var readerIterator: Iterator[T] = new AvroStreamReader[T](pathsIterator.next()).read()
 
   override def receive: Receive = {
 
     case _: Pull =>
       if (readerIterator.hasNext) {
         // read one from the current file
-        sender() ! readerIterator.next().Body
+        sender() ! readerIterator.next()
       } else {
         // open next file and read one
         if (pathsIterator.hasNext) {
-          readerIterator = new EhCaptureStreamReader(pathsIterator.next()).read()
-          sender() ! readerIterator.next().Body
+          readerIterator = new AvroStreamReader[T](pathsIterator.next()).read()
+          sender() ! readerIterator.next()
         } else {
           // all files in original path spec have been processed
           sender() ! NoMore()

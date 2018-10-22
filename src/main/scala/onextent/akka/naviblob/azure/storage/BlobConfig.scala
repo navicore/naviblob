@@ -1,4 +1,4 @@
-package onextent.akka.naviblob.azure
+package onextent.akka.naviblob.azure.storage
 
 case class BlobConfig(accountName: String,
                       accountKey: String,
