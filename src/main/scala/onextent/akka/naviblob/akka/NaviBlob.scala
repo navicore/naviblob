@@ -12,13 +12,14 @@ import com.typesafe.scalalogging.LazyLogging
 import onextent.akka.naviblob.azure.avvro.AvroConnector.{NoMore, Pull}
 
 import scala.concurrent.{Await, Future}
+import scala.reflect.ClassTag
 
 /**
   * Convenience entry point api. Users instantiate this and wire it into their streams.
   */
 object NaviBlob {
 
-  def apply[T >: Null: Decoder: SchemaFor](connector: ActorRef)(
+  def apply[T >: Null: Decoder: SchemaFor: ClassTag](connector: ActorRef)(
       implicit system: ActorSystem,
       to: Timeout): Source[T, NotUsed] =
     Source.fromGraph(new NaviBlob[T](connector))
@@ -28,7 +29,7 @@ object NaviBlob {
 /**
   * Entry point api. Users instantiate this and wire it into their streams.
   */
-class NaviBlob[T >: Null: Decoder: SchemaFor](connector: ActorRef)(
+class NaviBlob[T >: Null: Decoder: SchemaFor: ClassTag](connector: ActorRef)(
     implicit system: ActorSystem,
     to: Timeout)
     extends GraphStage[SourceShape[T]]
