@@ -3,6 +3,7 @@ package onextent.akka.naviblob.azure
 import com.microsoft.azure.storage.blob._
 
 import scala.annotation.tailrec
+import scala.collection.JavaConverters._
 
 class AzureBlobPaths(implicit cfg: AzureBlobConfig)
     extends AzureBlobber
@@ -26,17 +27,10 @@ class AzureBlobPaths(implicit cfg: AzureBlobConfig)
     val segment = body.segment()
 
     if (segment != null)
-      segment
-        .blobItems()
-        .forEach(y => paths = y.name() :: paths)
+      segment.blobItems.asScala.foreach(y => paths = y.name() :: paths)
 
-    paths = paths.reverse
     val nextMarer = body.nextMarker()
-    if (nextMarer == null) {
-      List()
-    } else {
-      getSegment(nextMarer, options)
-    }
+    if (nextMarer == null) List() else getSegment(nextMarer, options)
 
   }
 
