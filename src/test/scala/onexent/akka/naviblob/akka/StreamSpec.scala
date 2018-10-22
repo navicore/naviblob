@@ -39,7 +39,7 @@ class StreamSpec extends FlatSpec with Matchers {
     println(s"$count sunk $m")
   })
 
-  "stream" should "read blobs" in {
+  ignore should "read blobs" in {
 
     implicit val cfg: AzureBlobConfig = AzureBlobConfig(storageAccount, storageKey, containerName, storagePath)
     val connector: ActorRef = actorSystem.actorOf(EhCaptureConnector.props(cfg))
