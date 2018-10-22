@@ -1,7 +1,7 @@
 package onextent.akka.naviblob.azure
 
 import com.typesafe.scalalogging.LazyLogging
-import onextent.akka.naviblob.azure.avvro.AvroStreamReader
+import onextent.akka.naviblob.azure.avro.AvroStreamReader
 import onextent.akka.naviblob.azure.storage.{BlobConfig, BlobPaths, V8Blobber}
 import org.scalatest._
 

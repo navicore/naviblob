@@ -1,4 +1,4 @@
-package onextent.akka.naviblob.azure.avvro
+package onextent.akka.naviblob.azure.avro
 
 import com.microsoft.azure.storage.blob.CloudBlockBlob
 import com.sksamuel.avro4s._

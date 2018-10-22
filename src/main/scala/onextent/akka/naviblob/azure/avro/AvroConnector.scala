@@ -1,4 +1,4 @@
-package onextent.akka.naviblob.azure.avvro
+package onextent.akka.naviblob.azure.avro
 
 import akka.actor.{Actor, Props}
 import com.sksamuel.avro4s.{Decoder, SchemaFor}

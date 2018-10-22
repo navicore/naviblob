@@ -7,7 +7,7 @@ import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.util.Timeout
 import onextent.akka.naviblob.akka.NaviBlob
 import onextent.akka.naviblob.azure.EhRecord
-import onextent.akka.naviblob.azure.avvro.AvroConnector
+import onextent.akka.naviblob.azure.avro.AvroConnector
 import onextent.akka.naviblob.azure.storage.BlobConfig
 import org.scalatest._
 
