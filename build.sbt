@@ -13,7 +13,7 @@ javaOptions in test ++= Seq(
 
 parallelExecution in test := false
 
-version := "0.0.0"
+version := "0.9.0"
 
 val scala212 = "2.12.7"
 val scala211 = "2.11.12"
@@ -23,10 +23,10 @@ val akkaVersion = "2.5.17"
 
 publishMavenStyle := true
 
-homepage := Some(url("https://github.com/navicore/akka-eventhubs"))
+homepage := Some(url("https://github.com/navicore/naviblob"))
 
-scmInfo := Some(ScmInfo(url("https://github.com/navicore/akka-eventhubs"),
-                            "git@github.com:navicore/akka-eventhubs.git"))
+scmInfo := Some(ScmInfo(url("https://github.com/navicore/naviblob"),
+                            "git@github.com:navicore/naviblob.git"))
 
 developers := List(Developer("navicore",
                              "Ed Sweeney",
@@ -68,27 +68,23 @@ publishTo := Some(
 libraryDependencies ++=
   Seq(
 
+    "ch.qos.logback" % "logback-classic" % "1.1.7",
+    "com.typesafe" % "config" % "1.3.3",
+    "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0",
+
     // this is a mess, I can list all the blobs with 10.1 and I can integrate with other libs via InputStream with 8.0
     "com.microsoft.azure" % "azure-storage-blob" % "10.1.0",
     "com.microsoft.azure" % "azure-storage" % "8.0.0",
 
     "com.sksamuel.avro4s" %% "avro4s-core" % "2.0.2",
 
-    "ch.qos.logback" % "logback-classic" % "1.1.7",
-    "com.typesafe" % "config" % "1.3.3",
-    "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0",
-
-    "org.apache.avro" % "avro" % "1.8.2",
-    
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
-    "com.typesafe.akka" %% "akka-persistence" % akkaVersion,
 
     "org.scalatest" %% "scalatest" % "3.0.5" % "test"
   )
 
 dependencyOverrides ++= Seq(
-  "com.typesafe.akka" %% "akka-persistence" % akkaVersion,
   "com.typesafe.akka" %% "akka-actor"  % akkaVersion,
   "com.typesafe.akka" %% "akka-stream" % akkaVersion
 )

@@ -19,17 +19,4 @@ class ListBlobsSpec extends FlatSpec with Matchers {
 
   }
 
-  ignore should "read blob" in {
-
-    val c = new AzureBlobPaths
-    c.toList.headOption match {
-      case Some(p) =>
-        val r = new EhCaptureSetReader(p)
-        val records = r.read()
-        records.size should be(9997)
-        records.slice(0, 10).foreach(println)
-      case _ =>
-    }
-
-  }
 }

@@ -34,6 +34,7 @@ class NaviBlob(connector: ActorRef)(implicit system: ActorSystem, to: Timeout)
               case _: NoMore =>
                 logger.info(
                   "blob stream is finished. all blobs have been read.")
+                completeStage()
               case e => logger.warn(s"pull error: $e", e)
             }
           }
