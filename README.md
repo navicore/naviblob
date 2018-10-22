@@ -1,15 +1,11 @@
-Akka Azure Blob
+Read Blob Storage into Akka Streams
 ---
 
-An Akka Streams source to read blobs with back pressure with optional Avro support for Eventhubs capture blobs
-
-
-UNDER CONSTRUCTION
-
-UNDER CONSTRUCTION
-
-UNDER CONSTRUCTION
-
+### Current Storage Sources:
+1. Azure Blobs with Avro created by Azure Eventhubs Capture.
+1. ...
+1. ...
+1. Other cloud storage implementations TBD.
 
 # USAGE
 
@@ -19,7 +15,6 @@ update your `build.sbt` dependencies with:
 // https://mvnrepository.com/artifact/tech.navicore/naviblob
 libraryDependencies += "tech.navicore" %% "naviblob" % "TBD"
 ```
-
 
 create a config, a connector, and a graph stage via:
 
