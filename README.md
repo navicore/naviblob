@@ -1,20 +1,20 @@
 [![Build Status](https://travis-ci.org/navicore/naviblob.svg?branch=master)](https://travis-ci.org/navicore/naviblob)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6b9e137785184eb4b91048e8da24a0e9)](https://www.codacy.com/app/navicore/naviblob?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=navicore/naviblob&amp;utm_campaign=Badge_Grade)
 
-#Read Blob Storage into Akka Streams
+# Read Blob Storage into Akka Streams
 
 Why?  Usually I'll use Akka Streams with streaming sources.  This connector is
 for when I want to replay historical streaming data into an already existing
 code base that was designed for streaming.  The initial use case is to replay
 Azure Eventhubs "capture" avro data back into other Eventhubs.
 
-##Current Storage Sources
+## Current Storage Sources
 1. Azure Blobs with Avro created by Azure Eventhubs Capture.
 2. ...
 3. ...
 4. Other cloud storage implementations TBD.
 
-##USAGE
+## USAGE
 
 update your `build.sbt` dependencies with:
 
@@ -42,15 +42,15 @@ create a config, a connector, and a graph stage via:
     ...
 ```
 
-##OPS
+## OPS
 
-###publish local
+### publish local
 
 ```console
 sbt +publishLocalSigned
 ```
 
-###publish to nexus staging
+### publish to nexus staging
 
 ```console
 export GPG_TTY=$(tty)
