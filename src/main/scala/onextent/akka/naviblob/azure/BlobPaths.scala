@@ -5,8 +5,8 @@ import com.microsoft.azure.storage.blob._
 import scala.annotation.tailrec
 import scala.collection.JavaConverters._
 
-class AzureBlobPaths(implicit cfg: AzureBlobConfig)
-    extends AzureBlobber
+class BlobPaths(implicit cfg: BlobConfig)
+    extends Blobber
     with Iterable[String] {
 
   //confirmed that java is mutating the options

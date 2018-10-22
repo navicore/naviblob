@@ -2,8 +2,8 @@ package onextent.akka.naviblob.azure
 
 import scala.collection.JavaConverters._
 
-class AzureV8BlobPaths(implicit cfg: AzureBlobConfig)
-    extends AzureV8Blobber
+class V8BlobPaths(implicit cfg: BlobConfig)
+    extends V8Blobber
     with Iterable[String] {
 
   var paths = List()

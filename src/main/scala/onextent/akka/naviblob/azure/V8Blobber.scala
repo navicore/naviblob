@@ -4,7 +4,7 @@ import com.microsoft.azure.storage.CloudStorageAccount
 import com.microsoft.azure.storage.blob.{CloudBlobClient, CloudBlobContainer}
 import com.typesafe.scalalogging.LazyLogging
 
-class AzureV8Blobber(implicit cfg: AzureBlobConfig) extends LazyLogging {
+class V8Blobber(implicit cfg: BlobConfig) extends LazyLogging {
 
   val storageConnectionString =
     s"DefaultEndpointsProtocol=https;AccountName=${cfg.accountName};AccountKey=${cfg.accountKey}"

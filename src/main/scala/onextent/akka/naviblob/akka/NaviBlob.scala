@@ -6,7 +6,7 @@ import akka.stream.stage.{GraphStage, GraphStageLogic, OutHandler}
 import akka.stream.{Attributes, Outlet, SourceShape}
 import akka.util.Timeout
 import com.typesafe.scalalogging.LazyLogging
-import onextent.akka.naviblob.akka.EhCaptureConnector.{NoMore, Pull}
+import onextent.akka.naviblob.azure.AvroConnector.{NoMore, Pull}
 
 import scala.concurrent.{Await, Future}
 

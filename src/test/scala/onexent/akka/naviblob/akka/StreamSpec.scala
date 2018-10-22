@@ -5,9 +5,8 @@ import akka.actor.{ActorRef, ActorSystem}
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.stream.scaladsl.{Sink, Source}
 import akka.util.Timeout
-
-import onextent.akka.naviblob.akka.{EhCaptureConnector, NaviBlob}
-import onextent.akka.naviblob.azure.AzureBlobConfig
+import onextent.akka.naviblob.akka.NaviBlob
+import onextent.akka.naviblob.azure.{AvroConnector, BlobConfig, EhRecord}
 import org.scalatest._
 
 import scala.concurrent.{Await, Future}
@@ -38,10 +37,10 @@ class StreamSpec extends FlatSpec with Matchers {
     println(s"$count sunk $m")
   })
 
-  ignore should "read blobs" in {
+  "stream" should "read blobs" in {
 
-    implicit val cfg: AzureBlobConfig = AzureBlobConfig(storageAccount, storageKey, containerName, storagePath)
-    val connector: ActorRef = actorSystem.actorOf(EhCaptureConnector.props(cfg))
+    implicit val cfg: BlobConfig = BlobConfig(storageAccount, storageKey, containerName, storagePath)
+    val connector: ActorRef = actorSystem.actorOf(AvroConnector.props[EhRecord])
     val srcGraph = new NaviBlob(connector)
 
     val r: Future[Done] = Source.fromGraph(srcGraph).runWith(consumer)

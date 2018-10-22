@@ -1,26 +1,28 @@
-package onextent.akka.naviblob.akka
+package onextent.akka.naviblob.azure
 
 import akka.actor.{Actor, Props}
+import com.sksamuel.avro4s.{Decoder, SchemaFor}
 import com.typesafe.scalalogging.LazyLogging
-import onextent.akka.naviblob.akka.EhCaptureConnector.{NoMore, Pull}
-import onextent.akka.naviblob.azure._
+import onextent.akka.naviblob.azure.AvroConnector.{NoMore, Pull}
 
-object EhCaptureConnector extends LazyLogging {
-  val name: String = "EhCaptureConnector"
-  def props(implicit config: BlobConfig) =
-    Props(new EhCaptureConnector())
+object AvroConnector extends LazyLogging {
+
+  val name: String = "AvroConnector"
+
+  def props[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig) = Props(new AvroConnector[T]())
+
   final case class Pull()
   final case class NoMore()
 }
 
-class EhCaptureConnector(implicit config: BlobConfig)
+class AvroConnector[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig)
     extends Actor
     with LazyLogging {
 
   val pathsIterator: Iterator[String] = new BlobPaths().toList.iterator
 
   var readerIterator: Iterator[EhRecord] =
-    new EhCaptureStreamReader(pathsIterator.next()).read()
+    new AvroStreamReader[EhRecord](pathsIterator.next()).read()
 
   override def receive: Receive = {
 

@@ -3,8 +3,8 @@ package onextent.akka.naviblob.azure
 import com.microsoft.azure.storage.blob.CloudBlockBlob
 import com.sksamuel.avro4s.{AvroInputStream, AvroSchema}
 
-class EhCaptureStreamReader(path: String)(implicit cfg: AzureBlobConfig)
-    extends AzureV8Blobber {
+class EhCaptureStreamReader(path: String)(implicit cfg: BlobConfig)
+    extends V8Blobber {
 
   val blob: CloudBlockBlob = container.getBlockBlobReference(path)
 

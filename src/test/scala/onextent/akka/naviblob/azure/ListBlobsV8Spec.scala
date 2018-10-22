@@ -12,17 +12,17 @@ class ListBlobsV8Spec extends FlatSpec with Matchers with LazyLogging {
 
   ignore should "read blob" in {
 
-    implicit val cfg: AzureBlobConfig = AzureBlobConfig(storageAccount, storageKey, containerName, storagePath)
-    implicit val azureBlobber: AzureV8Blobber = new AzureV8Blobber()
+    implicit val cfg: BlobConfig = BlobConfig(storageAccount, storageKey, containerName, storagePath)
+    implicit val azureBlobber: V8Blobber = new V8Blobber()
 
-    new AzureBlobPaths().toList.headOption match {
+    new BlobPaths().toList.headOption match {
       case Some(p) =>
 
-        val r = new EhCaptureStreamReader(p)
+        val r = new AvroStreamReader[EhRecord](p)
         val iter = r.read()
         val records = iter.toList
 
-        records.size should be(9997)
+        records.size should be(12404)
         records.slice(0, 10).foreach(println)
 
       case _ => assertResult(false)(true)
