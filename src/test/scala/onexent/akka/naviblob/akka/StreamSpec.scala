@@ -47,7 +47,7 @@ class StreamSpec extends FlatSpec with Matchers {
 
     val r: Future[Done] = Source.fromGraph(srcGraph).runWith(consumer)
 
-    Await.result(r, 120 seconds)
+    Await.result(r, 10 * 60 seconds)
 
   }
 

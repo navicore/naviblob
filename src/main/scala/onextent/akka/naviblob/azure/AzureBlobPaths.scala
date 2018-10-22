@@ -42,7 +42,8 @@ class AzureBlobPaths(implicit cfg: AzureBlobConfig)
 
   getSegment(null, options)
 
-  override def iterator: Iterator[String] =
+  override def iterator: Iterator[String] = {
+    paths = paths.sorted
     new Iterator[String] {
       def hasNext: Boolean = paths.nonEmpty
       def next: String = {
@@ -51,5 +52,6 @@ class AzureBlobPaths(implicit cfg: AzureBlobConfig)
         h
       }
     }
+  }
 
 }

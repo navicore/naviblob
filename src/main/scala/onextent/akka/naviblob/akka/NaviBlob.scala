@@ -6,9 +6,8 @@ import akka.stream.stage.{GraphStage, GraphStageLogic, OutHandler}
 import akka.stream.{Attributes, Outlet, SourceShape}
 import akka.util.Timeout
 import com.typesafe.scalalogging.LazyLogging
-import onextent.akka.naviblob.akka.EhCaptureConnector.Pull
+import onextent.akka.naviblob.akka.EhCaptureConnector.{NoMore, Pull}
 
-import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 
 /**
@@ -29,11 +28,13 @@ class NaviBlob(connector: ActorRef)(implicit system: ActorSystem, to: Timeout)
         out,
         new OutHandler {
           override def onPull(): Unit = {
-            logger.debug("source onPull")
             val f: Future[Any] = connector ask Pull()
-            Await.result(f, 120 seconds) match {
+            Await.result(f, to.duration) match {
               case data: String => push(out, data)
-              case e            => logger.warn(s"pull error: $e", e)
+              case _: NoMore =>
+                logger.info(
+                  "blob stream is finished. all blobs have been read.")
+              case e => logger.warn(s"pull error: $e", e)
             }
           }
         }
