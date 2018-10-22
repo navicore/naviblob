@@ -3,10 +3,10 @@
 
 # Read Blob Storage into Akka Streams
 
-Why?  Usually I'll use Akka Streams with streaming sources.  This connector is
-for when I want to replay historical streaming data into an already existing
-code base that was designed for streaming.  The initial use case is to replay
-Azure Eventhubs "capture" avro data back into other Eventhubs.
+This connector is for when I want to replay historical data-at-rest into an
+existing code base that had been designed for streaming.  The initial use
+case is to replay Azure Eventhubs "capture" avro data back into other Eventhubs,
+allowing me to back-test new streaming code.
 
 ## Current Storage Sources
 1.  Azure Blobs with Avro created by Azure Eventhubs Capture
