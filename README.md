@@ -25,7 +25,7 @@ This example reads avro data from Azure blobs.  It uses [avro4s] to create
 the avro schema from a case class type parameter.
 
 Create a config, a connector, and a source via the example below - note the
-`EhRecord` case class can be substituted for any class that represents your
+`EhRecord` type parameter can be replaced with a case class that represents your
 avro schema.
 
 ```scala
