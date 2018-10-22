@@ -13,7 +13,7 @@ class ListBlobsV8Spec extends FlatSpec with Matchers with LazyLogging {
   implicit val cfg: AzureBlobConfig = AzureBlobConfig(storageAccount, storageKey, containerName, storagePath)
   implicit val azureBlobber: AzureV8Blobber = new AzureV8Blobber()
 
-  "api" should "read blob" in {
+  ignore should "read blob" in {
 
     new AzureBlobPaths().toList.headOption match {
       case Some(p) =>
