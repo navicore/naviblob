@@ -6,13 +6,12 @@ import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.stream.scaladsl.{Sink, Source}
 import akka.util.Timeout
 
-import scala.concurrent.duration._
 import onextent.akka.naviblob.akka.{EhCaptureConnector, NaviBlob}
 import onextent.akka.naviblob.azure.AzureBlobConfig
 import org.scalatest._
 
 import scala.concurrent.{Await, Future}
-import scala.concurrent.duration.{Duration, FiniteDuration}
+import scala.concurrent.duration._
 
 class StreamSpec extends FlatSpec with Matchers {
 

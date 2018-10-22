@@ -9,10 +9,10 @@ code base that was designed for streaming.  The initial use case is to replay
 Azure Eventhubs "capture" avro data back into other Eventhubs.
 
 ## Current Storage Sources
- 1. Azure Blobs with Avro created by Azure Eventhubs Capture.
- 2. S3 <TBD>
- 3. GS <TBD>
- 4. Other cloud storage implementations TBD.
+1. Azure Blobs with Avro created by Azure Eventhubs Capture
+2. S3 <TBD>
+3. GS <TBD>
+4. Other cloud storage implementations TBD
 
 ## USAGE
 
