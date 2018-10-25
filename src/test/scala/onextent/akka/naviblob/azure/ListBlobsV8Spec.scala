@@ -2,7 +2,7 @@ package onextent.akka.naviblob.azure
 
 import com.typesafe.scalalogging.LazyLogging
 import onextent.akka.naviblob.azure.avro.AvroStreamReader
-import onextent.akka.naviblob.azure.storage.{BlobConfig, BlobPaths, V8Blobber}
+import onextent.akka.naviblob.azure.storage.{BlobConfig, BlobPaths, Blobber}
 import org.scalatest._
 
 class ListBlobsV8Spec extends FlatSpec with Matchers with LazyLogging {
@@ -15,7 +15,7 @@ class ListBlobsV8Spec extends FlatSpec with Matchers with LazyLogging {
   ignore should "read blob" in {
 
     implicit val cfg: BlobConfig = BlobConfig(storageAccount, storageKey, containerName, storagePath)
-    implicit val azureBlobber: V8Blobber = new V8Blobber()
+    implicit val azureBlobber: Blobber = new Blobber()
 
     new BlobPaths().toList.headOption match {
       case Some(p) =>

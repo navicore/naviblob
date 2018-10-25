@@ -16,7 +16,7 @@ class ListBlobsSpec extends FlatSpec with Matchers {
   ignore should "list blobs" in {
 
     val c = new BlobPaths
-    c.foreach(u => println(s"ejs $u"))
+    c.foreach(u => println(s"file is $u"))
 
   }
 
