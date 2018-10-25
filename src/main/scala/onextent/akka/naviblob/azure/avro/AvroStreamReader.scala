@@ -2,10 +2,10 @@ package onextent.akka.naviblob.azure.avro
 
 import com.microsoft.azure.storage.blob.CloudBlockBlob
 import com.sksamuel.avro4s._
-import onextent.akka.naviblob.azure.storage.{BlobConfig, V8Blobber}
+import onextent.akka.naviblob.azure.storage.{BlobConfig, Blobber}
 
 class AvroStreamReader[T >: Null : Decoder : SchemaFor](path: String)(implicit cfg: BlobConfig)
-    extends V8Blobber {
+    extends Blobber {
 
   val blob: CloudBlockBlob = container.getBlockBlobReference(path)
 

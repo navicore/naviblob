@@ -40,14 +40,12 @@ class StreamSpec extends FlatSpec with Matchers {
     println(s"$count sunk ${m.Body}")
   })
 
-  ignore should "read blobs" in {
+  "stream" should "read blobs" in {
 
     implicit val cfg: BlobConfig =
       BlobConfig(storageAccount, storageKey, containerName, storagePath)
-    val connector: ActorRef = actorSystem.actorOf(AvroConnector.props[EhRecord])
 
-    //val srcGraph = new NaviBlob[EhRecord](connector)
-    //val r: Future[Done] = Source.fromGraph(srcGraph).runWith(consumer)
+    val connector: ActorRef = actorSystem.actorOf(AvroConnector.props[EhRecord])
 
     val src = NaviBlob[EhRecord](connector)
     val r: Future[Done] = src.runWith(consumer)

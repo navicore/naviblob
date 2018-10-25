@@ -13,7 +13,7 @@ javaOptions in test ++= Seq(
 
 parallelExecution in test := false
 
-version := "0.9.5"
+version := "1.0.0"
 
 val scala212 = "2.12.7"
 val scala211 = "2.11.12"
@@ -72,8 +72,6 @@ libraryDependencies ++=
     "com.typesafe" % "config" % "1.3.3",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0",
 
-    // this is a mess, I can list all the blobs with 10.1 and I can integrate with other libs via InputStream with 8.0
-    "com.microsoft.azure" % "azure-storage-blob" % "10.1.0",
     "com.microsoft.azure" % "azure-storage" % "8.0.0",
 
     "com.sksamuel.avro4s" %% "avro4s-core" % "2.0.2",

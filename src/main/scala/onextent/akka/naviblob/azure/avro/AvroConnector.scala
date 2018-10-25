@@ -19,7 +19,10 @@ class AvroConnector[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig
 
   val pathsIterator: Iterator[String] = new BlobPaths().toList.iterator
 
-  var readerIterator: Iterator[T] = new AvroStreamReader[T](pathsIterator.next()).read()
+  val firstPath: String = pathsIterator.next()
+  logger.debug(s"reading from first path $firstPath")
+
+  var readerIterator: Iterator[T] = new AvroStreamReader[T](firstPath).read()
 
   override def receive: Receive = {
 
@@ -30,7 +33,9 @@ class AvroConnector[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig
       } else {
         // open next file and read one
         if (pathsIterator.hasNext) {
-          readerIterator = new AvroStreamReader[T](pathsIterator.next()).read()
+          val nextPath = pathsIterator.next()
+          logger.debug(s"reading from next path $nextPath")
+          readerIterator = new AvroStreamReader[T](nextPath).read()
           sender() ! readerIterator.next()
         } else {
           // all files in original path spec have been processed
