@@ -10,10 +10,10 @@ class ListBlobsSpec extends FlatSpec with Matchers {
   val storagePath: Option[String] = sys.env.get("BLOB_PATH")
   val containerName: String = sys.env.getOrElse("BLOB_CONTAINER", "unknown")
 
-  implicit val cfg: BlobConfig = BlobConfig(storageAccount, storageKey, containerName, storagePath)
-  implicit val azureBlobber: Blobber = new Blobber
-
   ignore should "list blobs" in {
+
+    implicit val cfg: BlobConfig = BlobConfig(storageAccount, storageKey, containerName, storagePath)
+    implicit val azureBlobber: Blobber = new Blobber
 
     val c = new BlobPaths
     c.foreach(u => println(s"file is $u"))

@@ -13,7 +13,7 @@ javaOptions in test ++= Seq(
 
 parallelExecution in test := false
 
-version := "1.0.0"
+version := "1.0.1"
 
 val scala212 = "2.12.7"
 val scala211 = "2.11.12"
