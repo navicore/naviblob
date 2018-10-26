@@ -58,10 +58,10 @@ releaseProcess := Seq[ReleaseStep](
 credentials += Credentials(Path.userHome / ".sbt" / "pgp.credentials")  
 
 // begin overwrite staging support
-publishConfiguration := publishConfiguration.value.withOverwrite(true)
-com.typesafe.sbt.pgp.PgpKeys.publishSignedConfiguration := com.typesafe.sbt.pgp.PgpKeys.publishSignedConfiguration.value.withOverwrite(true)
-publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
-com.typesafe.sbt.pgp.PgpKeys.publishLocalSignedConfiguration := com.typesafe.sbt.pgp.PgpKeys.publishLocalSignedConfiguration.value.withOverwrite(true)
+/* publishConfiguration := publishConfiguration.value.withOverwrite(true) */
+/* com.typesafe.sbt.pgp.PgpKeys.publishSignedConfiguration := com.typesafe.sbt.pgp.PgpKeys.publishSignedConfiguration.value.withOverwrite(true) */
+/* publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true) */
+/* com.typesafe.sbt.pgp.PgpKeys.publishLocalSignedConfiguration := com.typesafe.sbt.pgp.PgpKeys.publishLocalSignedConfiguration.value.withOverwrite(true) */
 // end overwrite staging support
 
 
