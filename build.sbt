@@ -13,7 +13,7 @@ javaOptions in test ++= Seq(
 
 parallelExecution in test := false
 
-version := "1.0.1"
+version := "1.0.2"
 
 val scala212 = "2.12.7"
 val scala211 = "2.11.12"
@@ -54,6 +54,15 @@ releaseProcess := Seq[ReleaseStep](
   releaseStepCommand("sonatypeReleaseAll"),
   pushChanges
 )
+
+credentials += Credentials(Path.userHome / ".sbt" / "pgp.credentials")  
+
+// begin overwrite staging support
+publishConfiguration := publishConfiguration.value.withOverwrite(true)
+com.typesafe.sbt.pgp.PgpKeys.publishSignedConfiguration := com.typesafe.sbt.pgp.PgpKeys.publishSignedConfiguration.value.withOverwrite(true)
+publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
+com.typesafe.sbt.pgp.PgpKeys.publishLocalSignedConfiguration := com.typesafe.sbt.pgp.PgpKeys.publishLocalSignedConfiguration.value.withOverwrite(true)
+// end overwrite staging support
 
 
 sonatypeProfileName := "tech.navicore"
