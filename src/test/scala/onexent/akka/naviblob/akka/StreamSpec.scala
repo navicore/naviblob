@@ -40,7 +40,7 @@ class StreamSpec extends FlatSpec with Matchers {
     println(s"$count sunk ${m.Body}")
   })
 
-  "str" should "read blobs" in {
+  ignore should "read blobs" in {
 
     implicit val cfg: BlobConfig =
       BlobConfig(storageAccount, storageKey, containerName, storagePath)

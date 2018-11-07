@@ -18,7 +18,7 @@ update your `build.sbt` dependencies with:
 
 ```scala
 // https://mvnrepository.com/artifact/tech.navicore/naviblob
-libraryDependencies += "tech.navicore" %% "naviblob" % "1.0.1"
+libraryDependencies += "tech.navicore" %% "naviblob" % "1.0.2"
 ```
 
 This example reads avro data from Azure blobs.  It uses [avro4s] to create
