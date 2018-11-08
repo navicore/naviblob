@@ -37,6 +37,8 @@ class NaviBlob[T >: Null: Decoder: SchemaFor: ClassTag](connector: ActorRef)(
     extends GraphStage[SourceShape[T]]
     with LazyLogging {
 
+  logger.debug("blob GraphStage is starting")
+
   val out: Outlet[T] = Outlet[T]("NaviBlobSource")
 
   override val shape: SourceShape[T] = SourceShape(out)
@@ -52,7 +54,7 @@ class NaviBlob[T >: Null: Decoder: SchemaFor: ClassTag](connector: ActorRef)(
             Await.result(f, to.duration) match {
               case data: T => push(out, data)
               case _: NoMore =>
-                logger.info(
+                logger.debug(
                   "blob stream is finished. all blobs have been read.")
                 completeStage()
               case e => logger.warn(s"pull error: $e", e)
