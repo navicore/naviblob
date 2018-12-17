@@ -51,13 +51,19 @@ class NaviBlob[T >: Null: Decoder: SchemaFor: ClassTag](connector: ActorRef)(
         new OutHandler {
           override def onPull(): Unit = {
             val f: Future[Any] = connector ask Pull()
-            Await.result(f, to.duration) match {
-              case data: T => push(out, data)
-              case _: NoMore =>
-                logger.debug(
-                  "blob stream is finished. all blobs have been read.")
-                completeStage()
-              case e => logger.warn(s"pull error: $e", e)
+            try {
+              Await.result(f, to.duration) match {
+                case data: T => push(out, data)
+                case _: NoMore =>
+                  logger.debug(
+                    "blob stream is finished. all blobs have been read.")
+                  completeStage()
+                case e => logger.warn(s"pull error: $e", e)
+              }
+            } catch {
+              case e: Throwable =>
+                logger.warn(s"pull error thrown: $e", e)
+                onPull() // keep trying... nothing good can come from failing until the connector is solidly persistent
             }
           }
         }
