@@ -1,4 +1,6 @@
 ENV*.sh
+.bloop/
+.metals/
 .ensime
 .ensime_cache/
 *.class
