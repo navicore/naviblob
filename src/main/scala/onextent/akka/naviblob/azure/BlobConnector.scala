@@ -1,21 +1,16 @@
-package onextent.akka.naviblob.azure.avro
+package onextent.akka.naviblob.azure
 
-import akka.actor.{Actor, Props}
+import akka.actor.Actor
 import com.sksamuel.avro4s.{Decoder, SchemaFor}
 import com.typesafe.scalalogging.LazyLogging
 import onextent.akka.naviblob.akka.{NoMore, Pull}
+import onextent.akka.naviblob.azure.avro.AvroStreamReader
 import onextent.akka.naviblob.azure.storage.{BlobConfig, BlobPaths}
 
 import scala.annotation.tailrec
 
-object AvroConnector extends LazyLogging {
-
-  val name: String = "AvroConnector"
-
-  def props[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig) = Props(new AvroConnector[T]())
-}
-
-class AvroConnector[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig)
+abstract class BlobConnector[T >: Null: Decoder: SchemaFor](
+    implicit config: BlobConfig)
     extends Actor
     with LazyLogging {
 
@@ -25,6 +20,8 @@ class AvroConnector[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig
   logger.debug(s"reading from first path $firstPath")
 
   var readerIterator: Iterator[T] = new AvroStreamReader[T](firstPath).read()
+
+  def createIterator(path: String): Iterator[T]
 
   override def receive: Receive = {
 
@@ -42,7 +39,7 @@ class AvroConnector[T >: Null : Decoder : SchemaFor](implicit config: BlobConfig
           } else {
             val nextPath = pathsIterator.next()
             logger.debug(s"reading from next path $nextPath")
-            readerIterator = new AvroStreamReader[T](nextPath).read()
+            readerIterator = createIterator(nextPath)
             pull() // recurse until you find one readable
           }
         }

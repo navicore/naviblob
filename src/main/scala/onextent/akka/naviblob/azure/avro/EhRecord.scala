@@ -1,4 +1,4 @@
-package onextent.akka.naviblob.azure
+package onextent.akka.naviblob.azure.avro
 
 /**
   * for reading data from Azure Eventhubs capture blobs

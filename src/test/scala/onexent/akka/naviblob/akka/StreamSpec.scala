@@ -6,13 +6,13 @@ import akka.stream.scaladsl.Sink
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.util.Timeout
 import onextent.akka.naviblob.akka.NaviBlob
-import onextent.akka.naviblob.azure.EhRecord
-import onextent.akka.naviblob.azure.avro.AvroConnector
+import onextent.akka.naviblob.azure.avro.{AvroBlobConnector, EhRecord}
 import onextent.akka.naviblob.azure.storage.BlobConfig
 import org.scalatest._
 
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
+import scala.language.postfixOps
 
 class StreamSpec extends FlatSpec with Matchers {
 
@@ -45,7 +45,8 @@ class StreamSpec extends FlatSpec with Matchers {
     implicit val cfg: BlobConfig =
       BlobConfig(storageAccount, storageKey, containerName, storagePath)
 
-    val connector: ActorRef = actorSystem.actorOf(AvroConnector.props[EhRecord])
+    val connector: ActorRef =
+      actorSystem.actorOf(AvroBlobConnector.props[EhRecord])
 
     val src = NaviBlob[EhRecord](connector)
     val r: Future[Done] = src.runWith(consumer)
