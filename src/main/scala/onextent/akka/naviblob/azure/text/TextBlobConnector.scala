@@ -1,8 +1,9 @@
-package onextent.akka.naviblob.azure
+package onextent.akka.naviblob.azure.text
 
 import akka.actor.Props
 import com.typesafe.scalalogging.LazyLogging
 import onextent.akka.naviblob.azure.storage._
+import onextent.akka.naviblob.azure.BlobConnector
 
 object TextBlobConnector extends LazyLogging {
   val name: String = "TextBlobConnector"

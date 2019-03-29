@@ -3,23 +3,29 @@
 
 # Read Blob Storage into Akka Streams
 
-This connector is for when I want to replay historical data-at-rest into an
+This connector is for when I replay historical data-at-rest into an
 existing code base that had been designed for streaming.  The initial use
-case is to replay Azure Eventhubs "capture" avro data back into other Eventhubs,
-allowing me to back-test new streaming code.
+case is to replay Azure Eventhubs "capture" avro data back into Eventhubs
+and Kafka, allowing me to back-test new streaming code.
 
 ## Current Storage Sources
+
 1.  Azure Blobs with Avro
-2.  Other cloud storage implementations TBD
+2.  Azure Blobs newline delimited text
+3.  Azure Blobs with Gzip'd newline delimited text
+4.  Other cloud storage implementations TBD
 
-## USAGE
+## INSTALL
 
-update your `build.sbt` dependencies with:
+Binaries available via [maven](https://mvnrepository.com/artifact/tech.navicore/naviblob): - check for latest version
 
+Update your `build.sbt` dependencies with:
 ```scala
 // https://mvnrepository.com/artifact/tech.navicore/naviblob
-libraryDependencies += "tech.navicore" %% "naviblob" % "1.1.0"
+libraryDependencies += "tech.navicore" %% "naviblob" % "1.1.1"
 ```
+
+## USAGE
 
 This example reads avro data from Azure blobs.  It uses [avro4s] to create
 the avro schema from a case class type parameter.
@@ -33,11 +39,15 @@ avro schema.
     ...
     ...
     ...
+    
     // credentials and location
     implicit val cfg: BlobConfig = BlobConfig(STORAGEACCOUNT, STORAGEKEY, CONTAINERNAME, STORAGEPATH)
+    
     // type parameter for avro deserialize - in this example: `EhRecord`
     val connector: ActorRef = actorSystem.actorOf(AvroConnector.props[EhRecord])
+    
     val src = NaviBlob[EhRecord](connector)
+
     ...
     ...
     ...
@@ -47,18 +57,30 @@ avro schema.
     ...
 ```
 
-for text in a jsonl kind of line delimited format, use:
+For line delimited text files, use the `TextBlobConnector` connector actor:
 
 ```scala
-    implicit val cfg: BlobConfig =
-      BlobConfig(storageAccount, storageKey, containerName, storagePath)
-
-    val connector: ActorRef =
-      actorSystem.actorOf(TextBlobConnector.props)
-
-    val src = NaviBlob[String](connector)
-    val r: Future[Done] = src.runWith(consumer)
+    ...
+    ...
+    ...
+    val connector: ActorRef = actorSystem.actorOf(TextBlobConnector.props)
+    ...
+    ...
+    ...
 ```
+
+For GZIP'd jsonl text, use the `GzipTextBlobConnector` connector actor:
+
+```scala
+    ...
+    ...
+    ...
+    val connector: ActorRef = actorSystem.actorOf(GzipTextBlobConnector.props)
+    ...
+    ...
+    ...
+```
+
 ## OPS
 
 ### publish local

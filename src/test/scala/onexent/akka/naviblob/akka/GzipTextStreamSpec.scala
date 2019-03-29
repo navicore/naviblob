@@ -7,14 +7,14 @@ import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.util.Timeout
 import onextent.akka.naviblob.akka.NaviBlob
 import onextent.akka.naviblob.azure.storage.BlobConfig
-import onextent.akka.naviblob.azure.text.TextBlobConnector
+import onextent.akka.naviblob.azure.text.GzipTextBlobConnector
 import org.scalatest._
 
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 import scala.language.postfixOps
 
-class TextStreamSpec extends FlatSpec with Matchers {
+class GzipTextStreamSpec extends FlatSpec with Matchers {
 
   implicit val actorSystem: ActorSystem = ActorSystem("spec")
   implicit val materializer: ActorMaterializer = ActorMaterializer(
@@ -40,13 +40,13 @@ class TextStreamSpec extends FlatSpec with Matchers {
     println(s"$count sunk $m")
   })
 
-  ignore should "read text blobs" in {
+  ignore should "read gzip blobs" in {
 
     implicit val cfg: BlobConfig =
       BlobConfig(storageAccount, storageKey, containerName, storagePath)
 
     val connector: ActorRef =
-      actorSystem.actorOf(TextBlobConnector.props)
+      actorSystem.actorOf(GzipTextBlobConnector.props)
 
     val src = NaviBlob[String](connector)
     val r: Future[Done] = src.runWith(consumer)

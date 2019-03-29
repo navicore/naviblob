@@ -14,7 +14,7 @@ import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 import scala.language.postfixOps
 
-class StreamSpec extends FlatSpec with Matchers {
+class AvroStreamSpec extends FlatSpec with Matchers {
 
   implicit val actorSystem: ActorSystem = ActorSystem("spec")
   implicit val materializer: ActorMaterializer = ActorMaterializer(

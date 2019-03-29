@@ -1,4 +1,4 @@
-package onextent.akka.naviblob.azure
+package onextent.akka.naviblob.azure.text
 
 import java.io.{BufferedReader, InputStreamReader}
 
