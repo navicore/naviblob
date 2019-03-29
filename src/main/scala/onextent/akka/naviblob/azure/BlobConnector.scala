@@ -4,7 +4,6 @@ import akka.actor.Actor
 import com.sksamuel.avro4s.{Decoder, SchemaFor}
 import com.typesafe.scalalogging.LazyLogging
 import onextent.akka.naviblob.akka.{NoMore, Pull}
-import onextent.akka.naviblob.azure.avro.AvroStreamReader
 import onextent.akka.naviblob.azure.storage.{BlobConfig, BlobPaths}
 
 import scala.annotation.tailrec
@@ -19,9 +18,10 @@ abstract class BlobConnector[T >: Null: Decoder: SchemaFor](
   val firstPath: String = pathsIterator.next()
   logger.debug(s"reading from first path $firstPath")
 
-  var readerIterator: Iterator[T] = new AvroStreamReader[T](firstPath).read()
 
   def createIterator(path: String): Iterator[T]
+
+  var readerIterator: Iterator[T] = createIterator(firstPath)
 
   override def receive: Receive = {
 

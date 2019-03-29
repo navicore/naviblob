@@ -6,7 +6,7 @@ import akka.stream.scaladsl.Sink
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.util.Timeout
 import onextent.akka.naviblob.akka.NaviBlob
-import onextent.akka.naviblob.azure.avro.{AvroBlobConnector, EhRecord}
+import onextent.akka.naviblob.azure.TextBlobConnector
 import onextent.akka.naviblob.azure.storage.BlobConfig
 import org.scalatest._
 
@@ -14,7 +14,7 @@ import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 import scala.language.postfixOps
 
-class StreamSpec extends FlatSpec with Matchers {
+class TextStreamSpec extends FlatSpec with Matchers {
 
   implicit val actorSystem: ActorSystem = ActorSystem("spec")
   implicit val materializer: ActorMaterializer = ActorMaterializer(
@@ -35,20 +35,20 @@ class StreamSpec extends FlatSpec with Matchers {
   val containerName: String = sys.env.getOrElse("BLOB_CONTAINER", "unknown")
 
   var count = 0
-  val consumer: Sink[EhRecord, Future[Done]] = Sink.foreach(m => {
+  val consumer: Sink[String, Future[Done]] = Sink.foreach(m => {
     count += 1
-    println(s"$count sunk ${m.Body}")
+    println(s"$count sunk $m")
   })
 
-  "sb" should "read blobs" in {
+  ignore should "read blobs" in {
 
     implicit val cfg: BlobConfig =
       BlobConfig(storageAccount, storageKey, containerName, storagePath)
 
     val connector: ActorRef =
-      actorSystem.actorOf(AvroBlobConnector.props[EhRecord])
+      actorSystem.actorOf(TextBlobConnector.props)
 
-    val src = NaviBlob[EhRecord](connector)
+    val src = NaviBlob[String](connector)
     val r: Future[Done] = src.runWith(consumer)
 
     Await.result(r, 10 * 60 seconds)
