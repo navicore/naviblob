@@ -1,4 +1,4 @@
-package onexent.akka.naviblob.akka
+package onextent.akka.naviblob.akka
 
 import akka.Done
 import akka.actor.{ActorRef, ActorSystem}
