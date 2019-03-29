@@ -18,7 +18,7 @@ update your `build.sbt` dependencies with:
 
 ```scala
 // https://mvnrepository.com/artifact/tech.navicore/naviblob
-libraryDependencies += "tech.navicore" %% "naviblob" % "1.0.2"
+libraryDependencies += "tech.navicore" %% "naviblob" % "1.1.0"
 ```
 
 This example reads avro data from Azure blobs.  It uses [avro4s] to create
@@ -47,6 +47,18 @@ avro schema.
     ...
 ```
 
+for text in a jsonl kind of line delimited format, use:
+
+```scala
+    implicit val cfg: BlobConfig =
+      BlobConfig(storageAccount, storageKey, containerName, storagePath)
+
+    val connector: ActorRef =
+      actorSystem.actorOf(TextBlobConnector.props)
+
+    val src = NaviBlob[String](connector)
+    val r: Future[Done] = src.runWith(consumer)
+```
 ## OPS
 
 ### publish local

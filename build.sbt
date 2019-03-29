@@ -13,13 +13,13 @@ javaOptions in test ++= Seq(
 
 parallelExecution in test := false
 
-version := "1.0.3"
+version := "1.1.0"
 
-val scala212 = "2.12.7"
+val scala212 = "2.12.8"
 val scala211 = "2.11.12"
 
 crossScalaVersions := Seq(scala212, scala211)
-val akkaVersion = "2.5.17"
+val akkaVersion = "2.5.21"
 
 publishMavenStyle := true
 
@@ -92,8 +92,6 @@ libraryDependencies ++=
   )
 
 dependencyOverrides ++= Seq(
-  "com.typesafe.akka" %% "akka-actor"  % akkaVersion,
-  "com.typesafe.akka" %% "akka-stream" % akkaVersion
 )
 
 assemblyJarName in assembly := "NaviBlob.jar"
