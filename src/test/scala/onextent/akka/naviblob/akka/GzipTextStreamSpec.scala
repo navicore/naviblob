@@ -5,7 +5,6 @@ import akka.actor.{ActorRef, ActorSystem}
 import akka.stream.scaladsl.Sink
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
 import akka.util.Timeout
-import onextent.akka.naviblob.akka.NaviBlob
 import onextent.akka.naviblob.azure.storage.BlobConfig
 import onextent.akka.naviblob.azure.text.GzipTextBlobConnector
 import org.scalatest._
