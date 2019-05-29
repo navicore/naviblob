@@ -37,7 +37,7 @@ libraryDependencies ++=
 
     "ch.qos.logback" % "logback-classic" % "1.2.3",
     "com.typesafe" % "config" % "1.3.4",
-    "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0",
+    "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
 
     "com.microsoft.azure" % "azure-storage" % "8.3.0",
 
