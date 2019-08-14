@@ -5,6 +5,7 @@ ENV*.sh
 .ensime_cache/
 *.class
 *.log
+*.jsonl
 .idea/
 .DS_Store
 # sbt specific
