@@ -4,8 +4,10 @@ import com.typesafe.scalalogging.LazyLogging
 import onextent.akka.naviblob.azure.avro.{AvroStreamReader, EhRecord}
 import onextent.akka.naviblob.azure.storage.{BlobConfig, BlobPaths, Blobber}
 import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class ListBlobsSpec extends FlatSpec with Matchers with LazyLogging {
+class ListBlobsSpec extends AnyFlatSpec with Matchers with LazyLogging {
 
   val storageAccount: String = sys.env.getOrElse("BLOB_ACCOUNT", "unknown")
   val storageKey: String = sys.env.getOrElse("BLOB_KEY", "unknown")
