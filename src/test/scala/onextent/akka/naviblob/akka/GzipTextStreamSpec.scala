@@ -12,8 +12,10 @@ import org.scalatest._
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 import scala.language.postfixOps
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class GzipTextStreamSpec extends FlatSpec with Matchers {
+class GzipTextStreamSpec extends AnyFlatSpec with Matchers {
 
   implicit val actorSystem: ActorSystem = ActorSystem("spec")
   implicit val materializer: ActorMaterializer = ActorMaterializer(
