@@ -40,7 +40,7 @@ libraryDependencies ++=
     "com.typesafe" % "config" % "1.4.0",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
 
-    "com.microsoft.azure" % "azure-storage" % "8.4.0",
+    "com.microsoft.azure" % "azure-storage" % "8.5.0",
 
     "com.sksamuel.avro4s" %% "avro4s-core" % "2.0.2",
 
