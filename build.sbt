@@ -13,7 +13,7 @@ javaOptions in test ++= Seq(
 
 parallelExecution in test := false
 
-val akkaVersion = "2.5.28"
+val akkaVersion = "2.5.29"
 val scala212 = "2.12.8"
 val scala211 = "2.11.12"
 //val scala213 = "2.13.0"
