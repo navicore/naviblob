@@ -1,3 +1,4 @@
+runme*.sh
 ENV*.sh
 .bloop/
 .metals/
