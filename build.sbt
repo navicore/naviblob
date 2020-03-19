@@ -13,7 +13,7 @@ javaOptions in test ++= Seq(
 
 parallelExecution in test := false
 
-val akkaVersion = "2.5.27"
+val akkaVersion = "2.5.30"
 val scala212 = "2.12.8"
 val scala211 = "2.11.12"
 //val scala213 = "2.13.0"
@@ -47,7 +47,7 @@ libraryDependencies ++=
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
 
-    "org.scalatest" %% "scalatest" % "3.1.0" % "test"
+    "org.scalatest" %% "scalatest" % "3.1.1" % "test"
   )
 
 dependencyOverrides ++= Seq(
