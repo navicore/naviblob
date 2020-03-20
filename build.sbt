@@ -13,7 +13,7 @@ javaOptions in test ++= Seq(
 
 parallelExecution in test := false
 
-val akkaVersion = "2.5.29"
+val akkaVersion = "2.5.30"
 val scala212 = "2.12.8"
 val scala211 = "2.11.12"
 //val scala213 = "2.13.0"
@@ -40,7 +40,8 @@ libraryDependencies ++=
     "com.typesafe" % "config" % "1.4.0",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.9.2",
 
-    "com.microsoft.azure" % "azure-storage" % "8.6.1",
+
+    "com.microsoft.azure" % "azure-storage" % "8.6.2",
 
     "com.sksamuel.avro4s" %% "avro4s-core" % "2.0.2",
 
