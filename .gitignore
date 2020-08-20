@@ -1,4 +1,5 @@
 runme*.sh
+*.csv
 ENV*.sh
 .bloop/
 .metals/
