@@ -10,4 +10,4 @@ Versions of project currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-Report vulnerabilities to <team@navicore.tech>
+Report vulnerabilities to <mailto:team@navicore.tech>
