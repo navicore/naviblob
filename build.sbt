@@ -15,7 +15,7 @@ parallelExecution in test := false
 
 val akkaVersion = "2.5.32"
 val scala212 = "2.12.8"
-val scala211 = "2.11.12"
+val scala211 = "2.13.5"
 //val scala213 = "2.13.0"
 
 crossScalaVersions := Seq(scala212, scala211)
