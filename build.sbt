@@ -15,9 +15,8 @@ parallelExecution in test := false
 
 val akkaVersion = "2.6.14"
 val scala212 = "2.12.14"
-val scala211 = "2.11.12"
 
-crossScalaVersions := Seq(scala212, scala211)
+crossScalaVersions := Seq(scala212)
 inThisBuild(List(
   organization := "tech.navicore",
   homepage := Some(url("https://github.com/navicore/naviblob")),
