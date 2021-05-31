@@ -41,7 +41,7 @@ libraryDependencies ++=
 
     "com.microsoft.azure" % "azure-storage" % "8.6.6",
 
-    "com.sksamuel.avro4s" %% "avro4s-core" % "2.0.4",
+    "com.sksamuel.avro4s" %% "avro4s-core" % "4.0.9",
 
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
