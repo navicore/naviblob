@@ -13,7 +13,7 @@ javaOptions in test ++= Seq(
 
 parallelExecution in test := false
 
-val akkaVersion = "2.6.15"
+val akkaVersion = "2.6.16"
 val scala212 = "2.12.14"
 
 crossScalaVersions := Seq(scala212)
