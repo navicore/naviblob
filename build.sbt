@@ -42,7 +42,7 @@ inThisBuild(
 libraryDependencies ++=
   Seq(
     "ch.qos.logback" % "logback-classic" % "1.2.10",
-    "com.typesafe" % "config" % "1.4.1",
+    "com.typesafe" % "config" % "1.4.2",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.9.4",
     "com.microsoft.azure" % "azure-storage" % "8.6.6",
     "com.sksamuel.avro4s" %% "avro4s-core" % "4.0.12",
