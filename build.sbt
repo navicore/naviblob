@@ -19,23 +19,24 @@ val scala212 = "2.12.16"
 val scala213 = "2.13.8"
 
 crossScalaVersions := Seq(scala212, scala213)
-enablePlugins(GitVersioning)
 ThisBuild / publishTo := sonatypePublishToBundle.value
-inThisBuild(
-  List(
-    organization := "tech.navicore",
-    homepage := Some(url("https://github.com/navicore/naviblob")),
-    licenses := List(
-      "MIT" -> url("https://github.com/navicore/naviblob/blob/master/LICENSE")
-    ),
-    developers := List(
-      Developer(
-        "navicore",
-        "Ed Sweeney",
-        "ed@onextent.com",
-        url("https://navicore.tech")
-      )
-    )
+ThisBuild / organization := "tech.navicore"
+ThisBuild / homepage := Some(url("https://github.com/navicore/naviblob"))
+ThisBuild / scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/navicore/naviblob"),
+    "scm:git@github.com:navicore/navicore.git"
+  )
+)
+ThisBuild / licenses := List(
+  "MIT" -> url("https://github.com/navicore/naviblob/blob/master/LICENSE")
+)
+ThisBuild / developers := List(
+  Developer(
+    "navicore",
+    "Ed Sweeney",
+    "ed@onextent.com",
+    url("https://navicore.tech")
   )
 )
 
