@@ -25,7 +25,7 @@ ThisBuild / homepage := Some(url("https://github.com/navicore/naviblob"))
 ThisBuild / scmInfo := Some(
   ScmInfo(
     url("https://github.com/navicore/naviblob"),
-    "scm:git@github.com:navicore/navicore.git"
+    "scm:git@github.com:navicore/naviblob.git"
   )
 )
 ThisBuild / licenses := List(
