@@ -22,7 +22,7 @@ Binaries available via [maven](https://mvnrepository.com/artifact/tech.navicore/
 Update your `build.sbt` dependencies with:
 ```scala
 // https://mvnrepository.com/artifact/tech.navicore/naviblob
-libraryDependencies += "tech.navicore" %% "naviblob" % "1.1.1"
+libraryDependencies += "tech.navicore" %% "naviblob" % "1.3.7"
 ```
 
 ## USAGE
