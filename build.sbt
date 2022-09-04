@@ -42,7 +42,7 @@ ThisBuild / developers := List(
 
 libraryDependencies ++=
   Seq(
-    "ch.qos.logback" % "logback-classic" % "1.2.11",
+    "ch.qos.logback" % "logback-classic" % "1.4.0",
     "com.typesafe" % "config" % "1.4.2",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5",
     "com.microsoft.azure" % "azure-storage" % "8.6.6",
