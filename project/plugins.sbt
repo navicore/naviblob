@@ -1,5 +1,5 @@
 addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.9.2")
 addSbtPlugin("com.orrsella" % "sbt-stats" % "1.0.7")
-addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.0.2")
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.0.3")
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.6.3")
 addSbtPlugin("io.shiftleft" % "sbt-ci-release-early" % "2.0.35")
