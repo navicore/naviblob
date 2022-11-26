@@ -46,7 +46,7 @@ libraryDependencies ++=
     "com.typesafe" % "config" % "1.4.2",
     "com.typesafe.scala-logging" %% "scala-logging" % "3.9.5",
     "com.microsoft.azure" % "azure-storage" % "8.6.6",
-    "com.sksamuel.avro4s" %% "avro4s-core" % "4.1.0",
+    "com.sksamuel.avro4s" %% "avro4s-core" % "5.0.3",
     "com.typesafe.akka" %% "akka-actor" % akkaVersion,
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
     "org.scalatest" %% "scalatest" % "3.2.14" % "test"
